@@ -27,3 +27,6 @@ def perimetre_cercle(rayon, nb_decimal=2, math_pi=True):
         pi = 3.14
 
     return round(2 * pi * rayon, nb_decimal)
+
+def angles_triangles(a, b, c, nb_decimal=2, degree=True, math_pi=True):
+    return -1
