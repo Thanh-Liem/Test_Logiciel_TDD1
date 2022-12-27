@@ -56,5 +56,32 @@ class Test(unittest.TestCase):
         self.assertFalse(ex1.racine_carre(2, "haha"))                       # nb_decimal n'est pas un nombre
         self.assertFalse(ex1.racine_carre(2, 2.1))                       # nb_decimal n'est pas un nombre entier
 
+    def test_perimetre_cercle(self):
+        # Test Equal
+        self.assertEqual(ex1.perimetre_cercle(rayon=4, nb_decimal=2, math_pi=True), round(2 * math.pi * 4, 2))      # Test simple
+        self.assertEqual(ex1.perimetre_cercle(rayon=6, nb_decimal=2, math_pi=False), round(2 * 3.14 * 6, 2))        # Test simple
+        self.assertEqual(ex1.perimetre_cercle(rayon=11, nb_decimal=2, math_pi=True), 69.12)                         # Test en dur avec math.pi  (résultat à la calculatrice)
+        self.assertEqual(ex1.perimetre_cercle(rayon=11, nb_decimal=6, math_pi=True), 69.115038)                     # Test en dur avec math.pi  (résultat à la calculatrice)
+        self.assertEqual(ex1.perimetre_cercle(rayon=23, nb_decimal=0, math_pi=False), 144)                          # Test en dur pi = 3.14  (résultat à la calculatrice)
+        self.assertEqual(ex1.perimetre_cercle(rayon=23, nb_decimal=1, math_pi=False), 144.4)                        # Test en dur pi = 3.14  (résultat à la calculatrice)
+
+        # Test Equal
+        self.assertNotEqual(ex1.perimetre_cercle(rayon=4, nb_decimal=2, math_pi=True), round(2 * math.pi * 5, 2))   # Test simple
+        self.assertNotEqual(ex1.perimetre_cercle(rayon=6, nb_decimal=2, math_pi=False), round(2 * 3.14 * 6, 1))     # Test simple
+        self.assertNotEqual(ex1.perimetre_cercle(rayon=11, nb_decimal=2, math_pi=True), 71.12)                      # Test en dur avec math.pi  (résultat à la calculatrice)
+        self.assertNotEqual(ex1.perimetre_cercle(rayon=11, nb_decimal=6, math_pi=True), 68.115038)                  # Test en dur avec math.pi  (résultat à la calculatrice)
+        self.assertNotEqual(ex1.perimetre_cercle(rayon=23, nb_decimal=0, math_pi=False), 145)                       # Test en dur pi = 3.14  (résultat à la calculatrice)
+        self.assertNotEqual(ex1.perimetre_cercle(rayon=23, nb_decimal=1, math_pi=False), 144.5)                     # Test en dur pi = 3.14  (résultat à la calculatrice)
+
+        # Test Error -> False
+        self.assertFalse(ex1.perimetre_cercle(rayon=-1))                                                            # False : Rayon négatif
+        self.assertFalse(ex1.perimetre_cercle(rayon=3, nb_decimal=-1))                                              # False : Nombre de décimal  négatif
+
+        # Test des variables
+        self.assertFalse(ex1.perimetre_cercle("haha", 2, True))                                                     # rayon n'est pas un nombre
+        self.assertFalse(ex1.perimetre_cercle(2, "haha", True))                                                     # nb_decimal n'est pas un nombre entier
+        self.assertFalse(ex1.perimetre_cercle(2, 2.1, True))                                                        # nb_decimal n'est pas un nombre entier
+        self.assertFalse(ex1.perimetre_cercle(2, 2, "haha"))                                                        # math_pi n'est pas un bool
+
 if __name__ == "__main__":
     unittest.main()
