@@ -14,3 +14,6 @@ def racine_carre(x, nb_decimal=2):
         return False
 
     return round(x ** (1 / 2), nb_decimal)
+
+def perimetre_cercle(rayon, nb_decimal=2, math_pi=True):
+    return -1
