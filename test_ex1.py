@@ -102,13 +102,13 @@ class Test(unittest.TestCase):
         self.assertFalse(ex1.angles_triangles(a=2, b=3, c=-4, nb_decimal=2, degree=True, math_pi=True))                                         # False : c négatif
 
         # Test des variables
-        self.assertFalse(ex1.angles_triangles(a="haha", b=3, c=4, nb_decimal=2, degree=True, math_pi=True))  # a n'est pas un nombre
-        self.assertFalse(ex1.angles_triangles(a=2, b="haha", c=4, nb_decimal=2, degree=True, math_pi=True))  # b n'est pas un nombre
-        self.assertFalse(ex1.angles_triangles(a=2, b=3, c="haha", nb_decimal=2, degree=True, math_pi=True))  # c n'est pas un nombre
-        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal="haha", degree=True, math_pi=True))  # nb_decimal n'est pas un nombre
-        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree="haha", math_pi=True))  # degree n'est pas un bool
-        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi="haha"))  # math_pi n'est pas un bool
-        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2.1, degree=True, math_pi=True))  # nb_decimal n'est pas un nombre entier
+        self.assertFalse(ex1.angles_triangles(a="haha", b=3, c=4, nb_decimal=2, degree=True, math_pi=True))                                     # a n'est pas un nombre
+        self.assertFalse(ex1.angles_triangles(a=2, b="haha", c=4, nb_decimal=2, degree=True, math_pi=True))                                     # b n'est pas un nombre
+        self.assertFalse(ex1.angles_triangles(a=2, b=3, c="haha", nb_decimal=2, degree=True, math_pi=True))                                     # c n'est pas un nombre
+        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal="haha", degree=True, math_pi=True))                                     # nb_decimal n'est pas un nombre
+    self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree="haha", math_pi=True))                                            # degree n'est pas un bool
+    self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi="haha"))                                            # math_pi n'est pas un bool
+    self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2.1, degree=True, math_pi=True))                                            # nb_decimal n'est pas un nombre entier
 
 
 if __name__ == "__main__":
