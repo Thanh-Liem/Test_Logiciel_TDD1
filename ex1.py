@@ -5,6 +5,10 @@ def minimum(liste):
     if not liste or not isinstance(liste, list):
         return False
 
+    for x in liste:
+        if not isinstance(x, (int, float)):
+            return False
+
     return min(liste)
 
 def racine_carre(x, nb_decimal=2):
