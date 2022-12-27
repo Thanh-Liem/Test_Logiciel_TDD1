@@ -2,4 +2,7 @@ import math
 
 
 def minimum(liste):
-    return -1
+    if not liste or not isinstance(liste, list):
+        return False
+
+    return min(liste)
