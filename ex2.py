@@ -210,4 +210,24 @@ def ajout_link(db_name, username, password, link):
 
 def get_links(db_name, username, password):
 
-	return -1
+	if not isinstance(db_name, str) or not isinstance(username, str) or not isinstance(password, str):
+		return False
+
+	if not verif_utilisateur(db_name, username, password) or db_name == "":
+		return False
+
+	conn = sqlite3.connect(db_name)
+	conn.row_factory = sqlite3.Row
+	c = conn.cursor()
+
+	# Recupere les links deja present
+	action = "select links from Utilisateur where username='%s' and password='%s'" %(username, password)
+	c.execute(action)
+	ret = c.fetchone()
+	links = str(ret[0])
+	
+	# fermeture de la base de donnee
+	conn.commit()
+	conn.close()
+
+	return links
