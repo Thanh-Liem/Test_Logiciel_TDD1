@@ -50,3 +50,11 @@ def verif_table(db_name):
 	if ret == 0:
 		return False
 	return True
+
+def ajout_utilisateur(db_name, username, password):
+
+	return -1
+
+def verif_utilisateur_db(db_name, username, password):
+
+	return -1
