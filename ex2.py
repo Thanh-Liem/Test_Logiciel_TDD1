@@ -153,6 +153,57 @@ def verif_utilisateur(db_name, username, password):
 
 	return False
 
+def verif_link(link):
+
+	special_caracts = string.punctuation
+
+	for x in link:
+		if x.isupper():
+			return False
+		elif x in special_caracts:
+			return False
+
+	return True
+
 def ajout_link(db_name, username, password, link):
 
-	return -1
+	if not isinstance(db_name, str) or not isinstance(username, str) or not isinstance(password, str) or not isinstance(link, str):
+		return False
+
+	if not verif_utilisateur(db_name, username, password) or not verif_username_password(username, password) or not verif_link(link) or link == "" or db_name == "":
+		return False
+
+	conn = sqlite3.connect(db_name)
+	conn.row_factory = sqlite3.Row
+	c = conn.cursor()
+
+	# Recupere les links deja present
+	action = "select links from Utilisateur where username='%s' and password='%s'" %(username, password)
+	c.execute(action)
+	ret = c.fetchone()
+	links = str(ret[0])
+
+	# Ajout le link à la suite
+	if links == "None":
+		links = link
+	else:
+		links = links + "," + link
+
+	action = "update Utilisateur set links='%s' where username='%s' and password='%s'" %(links, username, password)
+	c.execute(action)
+	c.fetchone()
+
+	# Recupere les links
+	action = "select links from Utilisateur where username='%s' and password='%s'" %(username, password)
+	c.execute(action)
+	ret = c.fetchone()
+	links = str(ret[0])
+
+	# fermeture de la base de donnee
+	conn.commit()
+	conn.close()
+
+	if link not in links:
+		return False
+
+	return True
