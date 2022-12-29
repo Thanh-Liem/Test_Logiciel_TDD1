@@ -234,4 +234,39 @@ def get_links(db_name, username, password):
 
 def verif_db(db_name):
 	
-	return -1
+	if not isinstance(db_name, str):
+		return False
+
+	if db_name == "":
+		return False
+
+	conn = sqlite3.connect(db_name)
+	conn.row_factory = sqlite3.Row
+	c = conn.cursor()
+
+	action = "select * from Utilisateur"
+	c.execute(action)
+	ret = c.fetchall()
+
+	flag = True
+	for x in ret:
+
+		if not verif_username_password(str(x[0]), str(x[1])):
+			flag = False
+			break
+
+		if str(x[2]) == "None":
+			pass
+		else:
+			links = str(x[2]).split(',')
+
+			for y in links:
+				if not verif_link(y):
+					flag = False
+					break
+
+	# fermeture de la base de donnee
+	conn.commit()
+	conn.close()
+
+	return flag
