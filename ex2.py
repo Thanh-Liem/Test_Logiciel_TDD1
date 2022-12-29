@@ -152,3 +152,7 @@ def verif_utilisateur(db_name, username, password):
 			return True
 
 	return False
+
+def ajout_link(db_name, username, password, link):
+
+	return -1
