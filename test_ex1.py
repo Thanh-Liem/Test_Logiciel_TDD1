@@ -86,15 +86,13 @@ class Test(unittest.TestCase):
 
     def test_angles_trangles(self):
         # Test Equal
-        self.assertEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi=True), (28.96, 46.57, 104.48))                  # Test simple (d'après le site planetclac
-        self.assertEqual(ex1.angles_triangles(a=1, b=2, c=3, nb_decimal=2, degree=True, math_pi=True), (0, 0, 180))                             # Test simple (d'après le site planetclac
-        self.assertEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=6, degree=True, math_pi=True), (28.955024, 46.567463, 104.477512))      # Test simple (d'après le site planetclac
+        self.assertEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi=True), (28.96, 46.57, 104.48))                  # Test simple (d'après le site planetclac)
+        self.assertEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=6, degree=True, math_pi=True), (28.955024, 46.567463, 104.477512))      # Test simple (d'après le site planetclac)
         self.assertEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi=False), (28.97, 46.59, 104.53))                 # Test simple avec la conversion avec pi = 3.14 ( calculatrice)
 
         # Test Not Equal
-        self.assertNotEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi=True), (28.97, 46.56, 104.49))               # Test simple (d'après le site planetclac
-        self.assertNotEqual(ex1.angles_triangles(a=1, b=2, c=3, nb_decimal=2, degree=True, math_pi=True), (0, 0, 0))                            # Test simple (d'après le site planetclac
-        self.assertNotEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=6, degree=True, math_pi=True), (28.955025, 46.567464, 104.477511))   # Test simple (d'après le site planetclac
+        self.assertNotEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi=True), (28.97, 46.56, 104.49))               # Test simple (d'après le site planetclac)
+        self.assertNotEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=6, degree=True, math_pi=True), (28.955025, 46.567464, 104.477511))   # Test simple (d'après le site planetclac)
         self.assertNotEqual(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi=False), (28.96, 46.58, 104.52))              # Test simple avec la conversion avec pi = 3.14 ( calculatrice)
 
         # Test Error -> False
@@ -107,10 +105,13 @@ class Test(unittest.TestCase):
         self.assertFalse(ex1.angles_triangles(a=2, b="haha", c=4, nb_decimal=2, degree=True, math_pi=True))                                     # b n'est pas un nombre
         self.assertFalse(ex1.angles_triangles(a=2, b=3, c="haha", nb_decimal=2, degree=True, math_pi=True))                                     # c n'est pas un nombre
         self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal="haha", degree=True, math_pi=True))                                     # nb_decimal n'est pas un nombre
-        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree="haha", math_pi=True))                                            # degree n'est pas un bool
-        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi="haha"))                                            # math_pi n'est pas un bool
-        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2.1, degree=True, math_pi=True))                                            # nb_decimal n'est pas un nombre entier
-
+        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree="haha", math_pi=True))                                        # degree n'est pas un bool
+        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2, degree=True, math_pi="haha"))                                        # math_pi n'est pas un bool
+        self.assertFalse(ex1.angles_triangles(a=2, b=3, c=4, nb_decimal=2.1, degree=True, math_pi=True))                                        # nb_decimal n'est pas un nombre entier
+        
+        # Test longueur non conforme à un triangle
+        self.assertFalse(ex1.angles_triangles(a=1, b=1, c=3, nb_decimal=2, degree=True, math_pi=True))                                          # Les longueurs ne permettent pas de creer un triangle
+        self.assertFalse(ex1.angles_triangles(a=3, b=8, c=5, nb_decimal=2, degree=True, math_pi=True))                                          # Les longueurs ne permettent pas de creer un triangle
 
 if __name__ == "__main__":
     unittest.main()

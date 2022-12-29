@@ -37,6 +37,8 @@ def angles_triangles(a, b, c, nb_decimal=2, degree=True, math_pi=True):
         return False
     if a <= 0 or b <= 0 or c <= 0 or nb_decimal < 0:
         return False
+    if a + b <= c or a + c <= b or b + c <= a:
+        return False
 
     if math_pi:
         pi = math.pi
