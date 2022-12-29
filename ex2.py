@@ -207,3 +207,7 @@ def ajout_link(db_name, username, password, link):
 		return False
 
 	return True
+
+def get_links(db_name, username, password):
+
+	return -1
