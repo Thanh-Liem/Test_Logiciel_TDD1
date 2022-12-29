@@ -147,4 +147,8 @@ def verif_utilisateur_db(db_name, username, password):
 
 def verif_utilisateur(db_name, username, password):
 
-	return -1
+	if verif_username_password(username, password):
+		if verif_utilisateur_db(db_name, username, password):
+			return True
+
+	return False
