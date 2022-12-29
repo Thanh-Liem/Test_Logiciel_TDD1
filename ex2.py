@@ -231,3 +231,7 @@ def get_links(db_name, username, password):
 	conn.close()
 
 	return links
+
+def verif_db(db_name):
+	
+	return -1
