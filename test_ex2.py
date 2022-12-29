@@ -69,5 +69,20 @@ class Test(unittest.TestCase):
 		self.assertNotEqual(ex2.get_links("test_database.db", "testUsername123", "testPassword0?"), "testlink1") 		# Test n'a que le testlink1
 		self.assertNotEqual(ex2.get_links("test_database.db", "testUsername123", "testPassword0?"), "testlink2") 		# Test testlink2 écrase le link existant
 
+	def test_verif_db(self):
+		# On reset la base de donnée pour repartir de 0 que qu'il n'y a pas de dépendance avec le test d'avant
+		self.assertTrue(ex2.reset_init_db("test_database.db"))															# Condition initial
+		self.assertTrue(ex2.verif_table("test_database.db")) 															# Test si la table existe
+		self.assertTrue(ex2.ajout_utilisateur("test_database.db", "testUsername", "testPassword0?")) 					# Ajout d'un utilisateur
+		self.assertTrue(ex2.verif_utilisateur_db("test_database.db", "testUsername", "testPassword0?"))					# Test si l'utilisateur existe
+		self.assertTrue(ex2.verif_utilisateur("test_database.db", "testUsername", "testPassword0?")) 					# Test si la table existe
+		self.assertTrue(ex2.ajout_link("test_database.db", "testUsername", "testPassword0?", "testlink1")) 				# Ajout d'un link
+		self.assertTrue(ex2.ajout_link("test_database.db", "testUsername", "testPassword0?", "testlink2")) 				# Ajout d'un autre link
+		
+		self.assertTrue(ex2.ajout_utilisateur("test_database.db", "testUsername2", "testPassword0?2")) 					# Ajout d'un utilisateur
+
+		self.assertTrue(ex2.verif_db("test_database.db"))																# Test verification que tout est bon
+
+
 if __name__ == "__main__":
     unittest.main()
